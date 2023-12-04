@@ -1,9 +1,6 @@
 package com.book.store.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,7 @@ public class Categoria {
     private Long id;
     private String nome;
     private String descricao;
+    @OneToMany(mappedBy = "categoria")
     private List<Livro> livros = new ArrayList<>();
 
     public Categoria() {

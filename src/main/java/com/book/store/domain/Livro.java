@@ -1,9 +1,6 @@
 package com.book.store.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
@@ -16,6 +13,8 @@ public class Livro {
     private String titulo;
     private String nomeAutor;
     private String texto;
+    @ManyToOne
+    @JoinColumn
     private Categoria categoria;
 
     public Livro() {
