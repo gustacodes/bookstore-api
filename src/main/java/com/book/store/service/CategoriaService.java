@@ -4,8 +4,8 @@ import com.book.store.domain.Categoria;
 import com.book.store.dtos.CategoriaDTO;
 import com.book.store.exceptions.ObjectNotFoundExceptions;
 import com.book.store.repositories.CategoriaRepository;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +40,13 @@ public class CategoriaService {
 
     public void delete(Long id) {
         findById(id);
-        categoriaRepository.deleteById(id);
+
+        try {
+            categoriaRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new com.book.store.exceptions.DataIntegrityViolationException("Categoria não pode ser removido. Possui livros associados");
+        }
+
     }
 
 }
