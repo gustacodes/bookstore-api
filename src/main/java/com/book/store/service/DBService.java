@@ -27,9 +27,9 @@ public class DBService {
 
         Livro l1 = new Livro(null, "Clean Code", "Robert Martin", "Lorem ipsum", c1);
         Livro l2 = new Livro(null, "Engenharia de Software", "Louis V. Gerstner", "Lorem ipsum", c1);
-        Livro l3 = new Livro(null, "The Time Machine", "H. G. Wells", "Lorem ipsum", c1);
-        Livro l4 = new Livro(null, "I, Robot", "Isaac Asimov", "Lorem ipsum", c1);
-        Livro l5 = new Livro(null, "The War Of The Worlds", "H. G. Wells", "Lorem ipsum", c1);
+        Livro l3 = new Livro(null, "The Time Machine", "H. G. Wells", "Lorem ipsum", c2);
+        Livro l4 = new Livro(null, "I, Robot", "Isaac Asimov", "Lorem ipsum", c2);
+        Livro l5 = new Livro(null, "The War Of The Worlds", "H. G. Wells", "Lorem ipsum", c2);
 
         c1.getLivros().addAll(Arrays.asList(l1, l2));
         c2.getLivros().addAll(Arrays.asList(l3, l4, l5));

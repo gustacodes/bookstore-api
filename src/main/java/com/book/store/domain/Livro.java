@@ -1,5 +1,6 @@
 package com.book.store.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -15,6 +16,7 @@ public class Livro {
     private String texto;
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Categoria categoria;
 
     public Livro() {
