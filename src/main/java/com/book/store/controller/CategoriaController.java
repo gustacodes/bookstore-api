@@ -1,4 +1,4 @@
-package com.book.store;
+package com.book.store.controller;
 
 import com.book.store.domain.Categoria;
 import com.book.store.service.CategoriaService;
