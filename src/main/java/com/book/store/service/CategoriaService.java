@@ -1,8 +1,10 @@
 package com.book.store.service;
 
 import com.book.store.domain.Categoria;
+import com.book.store.dtos.CategoriaDTO;
 import com.book.store.exceptions.ObjectNotFoundExceptions;
 import com.book.store.repositories.CategoriaRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,13 @@ public class CategoriaService {
     public Categoria create(Categoria categoria) {
         categoriaRepository.save(categoria);
         return categoria;
+    }
+
+    public Categoria update(Long id, CategoriaDTO categoria) {
+        var findCategoria = findById(id);
+        findCategoria.setNome(categoria.getNome());
+        findCategoria.setDescricao(categoria.getDescricao());
+        return categoriaRepository.save(findCategoria);
     }
 
 }
