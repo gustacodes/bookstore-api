@@ -4,7 +4,6 @@ import com.book.store.domain.Categoria;
 import com.book.store.dtos.CategoriaDTO;
 import com.book.store.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -44,6 +43,12 @@ public class CategoriaController {
     public ResponseEntity<CategoriaDTO> update(@PathVariable Long id, @RequestBody CategoriaDTO categoria) {
         var categoriaAtualizada = categoriaService.update(id, categoria);
         return ResponseEntity.ok().body(new CategoriaDTO(categoriaAtualizada));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id) {
+        categoriaService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
