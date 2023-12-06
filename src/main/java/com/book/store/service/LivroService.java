@@ -1,5 +1,6 @@
 package com.book.store.service;
 
+import com.book.store.domain.Categoria;
 import com.book.store.domain.Livro;
 import com.book.store.exceptions.ObjectNotFoundExceptions;
 import com.book.store.repositories.LivroRepository;
@@ -17,6 +18,13 @@ public class LivroService {
 
     @Autowired
     private CategoriaService categoriaService;
+
+    public Livro create(Long id, Livro livro) {
+        livro.setId(null);
+        Categoria categoria = categoriaService.findById(id);
+        livro.setCategoria(categoria);
+        return livroRepository.save(livro);
+    }
 
     public Livro findById(Long id) {
         Optional<Livro> livro = livroRepository.findById(id);

@@ -6,7 +6,9 @@ import com.book.store.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +18,13 @@ public class LivroController {
 
     @Autowired
     private LivroService livroService;
+
+    @PostMapping
+    public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Long id, @RequestBody Livro livro) {
+        Livro novoLivro = livroService.create(id, livro);
+        URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(livro.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+    }
 
     @GetMapping
     public ResponseEntity<List<LivroDTO>> findAll(@RequestParam(value = "categoria", defaultValue = "0") Long id) {
