@@ -1,6 +1,5 @@
 package com.book.store.config;
 
-import com.book.store.service.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +11,7 @@ import org.springframework.context.annotation.Profile;
 public class DevConfig {
 
     @Autowired
-    private DBService dbService;
+    private DBConfig dbConfig;
 
     @Value("${spring.jpa.hibernate.ddl-auto}")
     private String strategy;
@@ -20,7 +19,7 @@ public class DevConfig {
     @Bean
     public Boolean instanciaBaseDedados() {
         if(strategy.equals("create")) {
-            dbService.instanciaBaseDeDados();
+            dbConfig.instanciaBaseDeDados();
         }
         return false;
     }

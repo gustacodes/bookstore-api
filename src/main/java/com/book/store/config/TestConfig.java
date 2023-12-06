@@ -1,6 +1,5 @@
 package com.book.store.config;
 
-import com.book.store.service.DBService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +10,12 @@ import org.springframework.context.annotation.Profile;
 public class TestConfig {
 
     @Autowired
-    private DBService dbService;
+    private DBConfig dbConfig;
 
     @Bean
     public String instaciaBaseDeDados() {
         String teste = "";
-        dbService.instanciaBaseDeDados();
+        dbConfig.instanciaBaseDeDados();
         return teste;
     }
 

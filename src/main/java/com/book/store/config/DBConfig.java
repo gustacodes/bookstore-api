@@ -1,17 +1,17 @@
-package com.book.store.service;
+package com.book.store.config;
 
 import com.book.store.domain.Categoria;
 import com.book.store.domain.Livro;
 import com.book.store.repositories.CategoriaRepository;
 import com.book.store.repositories.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Service
-public class DBService {
+@Configuration
+public class DBConfig {
 
 
     @Autowired
