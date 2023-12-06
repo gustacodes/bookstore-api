@@ -48,4 +48,9 @@ public class LivroService {
         newLivro.setNomeAutor(livro.getNomeAutor());
     }
 
+    public void delete(Long id) {
+        findById(id);
+        livroRepository.deleteById(id);
+    }
+
 }
