@@ -1,6 +1,8 @@
 package com.book.store.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +14,12 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotEmpty(message = "Campo nome é obrigatório")
+    @Length(min = 3, max = 100, message = "Mínimo de 3 caractéres requerido e no máximo 100")
     private String nome;
+
+    @NotEmpty(message = "Campo descrição é obrigatório")
+    @Length(min = 3, max = 200, message = "Mínimo de 3 caractéres requerido e no máximo 200")
     private String descricao;
     @OneToMany(mappedBy = "categoria")
     private List<Livro> livros = new ArrayList<>();

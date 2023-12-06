@@ -3,6 +3,7 @@ package com.book.store.controller;
 import com.book.store.domain.Livro;
 import com.book.store.dtos.LivroDTO;
 import com.book.store.service.LivroService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/livros")
 public class LivroController {
@@ -20,7 +21,7 @@ public class LivroController {
     private LivroService livroService;
 
     @PostMapping
-    public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Long id, @RequestBody Livro livro) {
+    public ResponseEntity<Livro> create(@RequestParam(value = "categoria", defaultValue = "0") Long id, @Valid @RequestBody Livro livro) {
         Livro novoLivro = livroService.create(id, livro);
         URI uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/livros/{id}").buildAndExpand(livro.getId()).toUri();
         return ResponseEntity.created(uri).build();
@@ -40,7 +41,7 @@ public class LivroController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Livro> update(@PathVariable Long id, @RequestBody Livro livro) {
+    public ResponseEntity<Livro> update(@PathVariable Long id, @Valid @RequestBody Livro livro) {
         Livro newLivro = livroService.update(id, livro);
         return ResponseEntity.ok().body(newLivro);
     }
